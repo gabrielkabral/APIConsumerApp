@@ -2,38 +2,38 @@ import React, { Component } from 'react'
 import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Images } from '../Themes'
 import { connect } from 'react-redux'
+import ComponenteUsuario from '../Components/ComponenteUsuario'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 import NewActions from '../Redux/NewRedux'
+import { usuariosSeletores } from '../Seletores/NewSeletores'
 
-class LaunchScreen extends Component {
+class NewScreen extends Component {
   render () {
     return (
       <View style={styles.mainContainer}>
-        <TouchableOpacity onPress={() => {
-          this.props.request()
-        }}>
-          <Text>aaa</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() =>
-          this.props.navigation.navigate('NewScreen')
-        }>
-          <Text>bbb</Text>
-        </TouchableOpacity>
+        <ComponenteUsuario
+          senha={'123123'}
+          apelido={'auheuhae'}
+          ultimoNome={'Nome'}
+          idade={12}
+          primeiroNome={'dale'}
+        />
       </View>
     )
   }
 }
 
 const mapStateToProps = state => ({
+  usuarios: usuariosSeletores(state)
 })
 
 const mapDispatchToProps = {
-  request: NewActions.newRequest
+
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LaunchScreen)
+)(NewScreen)
